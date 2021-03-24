@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  hdf5_processor:
+    build:
+      context: .
+      dockerfile: hdf5_processor/Dockerfile
+    container_name: hdf5-processor
+    command: ["python", "-m", "pytest", "-s", "-x", "--cov-report", "html:/docker_scratch/htmlreport", "--cov=hdf5_processor", "tests/"]
+    env_file:
+      - hdf5_processor/test.env
+    image: pennsieve/hdf5-processor:${IMAGE_TAG}
+    volumes:
+      - ./data/hdf5:/docker_scratch/
+      - ./hdf5_processor/tests/resources:/test-resources/
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}

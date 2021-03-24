@@ -1,0 +1,10 @@
+version: '3.5'
+
+services:
+  hdf5_processor:
+    build:
+      context: .
+      target: prod
+      dockerfile: hdf5_processor/Dockerfile
+    container_name: hdf5-processor
+    image: pennsieve/hdf5-processor:${IMAGE_TAG}
