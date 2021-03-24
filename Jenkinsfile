@@ -29,7 +29,7 @@ node('executor') {
 
       stage("Deploy") {
         allProcessors.each { proc ->
-          build job: "service-deploy/pennsieve-non-prod/us-east-1/dev-vpc/dev/${proc}",
+          build job: "service-deploy/pennsieve-non-prod/us-east-1/dev-vpc-use1/dev/${proc}",
           parameters: [
             string(name: 'IMAGE_TAG', value: imageTag),
             string(name: 'TERRAFORM_ACTION', value: 'apply')
